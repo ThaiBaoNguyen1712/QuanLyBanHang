@@ -1,0 +1,48 @@
+﻿@model List<QuanLyBanHang.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Hóa đơn đã bán";
+ 
+}
+<div style="background-color:#edf0f0;margin-top:-20px!important;min-height:50em;">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="Product-zone">
+                    <table id="myTable" class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Mã hóa đơn</th>
+                                <th scope="col">Tên người nhận</th>
+                                <th scope="col">SDT nhận hàng</th>
+                                <th scope="col">Địa chỉ nhận</th>
+                                <th scope="col">Email nhận</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.ShipName</td>
+                                <td>@item.ShipMobile</td>
+                                <td>@item.ShipAddress</td>
+                                <td>@item.ShipEmail</td>
+                                <td style="color:green"><b>@item.TrangThai</b></td>
+                                <td>
+                                    <a href="~/Admin/Invoice/Detail/@item.ID" class="bi bi-pencil-square"></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/JSTB.js"></script>

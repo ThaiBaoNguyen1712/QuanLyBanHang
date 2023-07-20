@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "HOME ADMIN";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="panel panel-group" style="background-color:yellow">
+                <div class="panel-body text-center">
+
+                    <p><h3>@ViewBag.SumInvoice</h3></p>
+                    <p>Tổng số hóa đơn</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:yellow">
+                <div class="panel-body text-center">
+                    <p><h3>@ViewBag.Invoiceneed</h3>Hóa đơn đặt hàng</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:yellow">
+                <div class="panel-body text-center">
+                    <p><h3>@ViewBag.SumRevenue vnđ</h3>Tổng doanh thu</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+    
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:greenyellow">
+                <div class="panel-body  text-center">
+
+                    <p><h3>@ViewBag.SumAccount</h3> Tài khoản đã được tạo</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:greenyellow">
+                <div class="panel-body  text-center">
+
+                    <p><h3>@ViewBag.PageView</h3>Lượt truy cập vào web</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:greenyellow">
+                <div class="panel-body  text-center">
+
+                    <p><h3>@ViewBag.Online</h3>người đang online</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:deepskyblue">
+                <div class="panel-body  text-center">
+
+                    <p><h3>@ViewBag.SumProduct </h3>Sản phẩm đang được bày bán</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:deepskyblue">
+                <div class="panel-body  text-center">
+                    <h4> Top 3 sản phẩm bán chạy nhất</h4>
+                    @foreach (var item in ViewBag.HotSale)
+                    {
+                        <p>@item</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-group" style="background-color:deepskyblue">
+                <div class="panel-body  text-center">
+                    <h4> Sản phẩm cần được nhập hàng</h4>
+                    @foreach (var item in ViewBag.ListProductneed)
+                    {
+                        <p>@item</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

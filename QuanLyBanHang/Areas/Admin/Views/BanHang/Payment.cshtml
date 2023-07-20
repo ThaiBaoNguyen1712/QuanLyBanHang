@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Lựa chọn khách hàng";
+
+}
+@section scripts{
+
+    <script src="~/Scripts/Controllers/IDetails.js"></script>
+}
+<div class="container">
+    <h2>Tạo hóa đơn</h2>
+    
+    <br />
+    @if (Model.Count > 0)
+    {
+<div class="row">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="danger">
+                <th>Mã SP</th>
+                <th>Tên SP</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.ID</td>
+                    <td>@item.Product.TenHang</td>
+                    <td><input type="number" class="txtQuantity form-control" data-id="@item.Product.ID" value="@item.Quantity" /></td>
+                    <td>@item.Product.GiaBan</td>
+                    <td>@(Convert.ToDecimal(item.Product.GiaBan * item.Quantity))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form action="~/Admin/BanHang/Payment" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="TenKH"> Chọn khách hàng:</label>
+                    @Html.DropDownList("ID_KhachHang", ViewData["TenKhachHang"] as SelectList, "--Chọn khách hàng --", new { @class = "form-control" })
+
+                </div>
+                <button class="btn-primary" style="padding:8px" data-toggle="modal" data-target="#Add-Client"><i class="bi bi-plus-circle"></i> Thêm khách hàng</button>
+                <!-- Đây là popup thêm KH-->
+                @Html.Partial("Create_Client")
+            </div>
+            <div class="col-md-6">
+
+
+                <div class="form-group">
+                    <label>Người nhận</label>
+                    <input name="shipName" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Điện thoại</label>
+                    <input name="mobile" class="form-control" required maxlength="11" minlength="9" />
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input name="address" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="otherEmail" required class="form-control" />
+                </div>
+                <button type="submit" class=" btn-primary pull-right" style="right: 80px;padding: 10px;width: 15em;">
+                    Thanh toán
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>
+            }
+
+            else
+            {
+            <span class="alert alert-danger">Chưa có sản phẩm nào trong hóa đơn</span>
+        }
+
+    <a href="~/Admin/BanHang/"></a>
+</div>
+<script src="~/Scripts/JSTB.js">
+</script>

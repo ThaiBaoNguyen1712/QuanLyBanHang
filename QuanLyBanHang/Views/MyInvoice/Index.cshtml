@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Đơn hàng";
+    var InvoiceHT = ViewBag.HoaDonListHT as IEnumerable<QuanLyBanHang.Models.HoaDon>;
+    var IDetailsHT = ViewBag.ChiTietHoaDonListHT as IEnumerable<QuanLyBanHang.Models.ChiTietHoaDon>;
+    var Invoice = ViewBag.HoaDonList as IEnumerable<QuanLyBanHang.Models.HoaDon>;
+    var IDetails = ViewBag.ChiTietHoaDonList as IEnumerable<QuanLyBanHang.Models.ChiTietHoaDon>;
+}
+<style>
+    .table-fixed {
+        table-layout: fixed;
+    }
+
+        .table-fixed th,
+        .table-fixed td {
+            width: 16.66%; /* Chia đều chiều rộng cho 6 cột (100% / 6 = 16.66%) */
+        }
+</style>
+<div class="container">
+    <h3 class="">
+        Đơn hàng đang xử lý của bạn
+    </h3>
+    @if (InvoiceHT != null && IDetailsHT != null)
+    {
+
+        <hr />
+        foreach (var item in IDetailsHT.GroupBy(i => i.HoaDon))// tạo các chi tiết hóa đơn theo riêng biệt từng hóa đơn
+        {
+            var hoaDon = item.Key; // Lấy thông tin hóa đơn
+            bool isDisplayed = false; // Biến kiểm tra đã hiển thị trạng thái và nút hay chưa
+
+            <h4>Hóa đơn số: @hoaDon.ID</h4> <!-- Hiển thị mã hóa đơn -->
+
+            <table class="table table-bordered table-fixed text-center">
+                <thead>
+                    <tr style="background-color:cornsilk">
+                        <th>Ảnh SP</th>
+                        <th>Tên SP</th>
+                        <th>Số lượng</th>
+                        <th>Giá SP</th>
+
+                        <th>Ngày đặt hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Yêu cầu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detail in item)
+                    {
+                        <tr>
+                            <td> <img src="~/Upload/Product/@detail.HangHoa.HinhAnh" class="img-responsive"/>
+                     
+                            </td>
+                            <td>@detail.HangHoa.TenHang</td>
+                            <td>@detail.SoLuong</td>
+                            <td>@detail.Gia</td>
+
+                            @if (!isDisplayed)
+                            {
+
+                                <td rowspan="@item.Count()">@detail.HoaDon.CreatedDate</td>
+                                <td rowspan="@item.Count()" style="color: orangered;" class="text-center">@detail.HoaDon.TrangThai</td>
+                                <td rowspan="@item.Count()"><a href="/MyInvoice/Delete/@hoaDon.ID" class="btn-danger text-center">Hủy đơn hàng</a></td>
+                                {
+                                    isDisplayed = true;
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+   
+
+    }
+    else
+    {
+<div class="alert alert-warning text-center">Không có đơn hàng</div>
+    }
+    <br />
+    <hr />
+    <h3 class="">
+        Đơn hàng đã xử lý của bạn
+    </h3>
+    @if (Invoice != null && IDetails != null)
+    {
+        <hr />
+        foreach (var item in IDetails.GroupBy(x => x.HoaDon))
+        {
+
+            var hoaDon = item.Key;
+            bool display = false;
+
+            <h4>Hóa đơn số : @hoaDon.ID</h4>
+            <table class="table table-bordered table-fixed text-center">
+                <thead>
+                    <tr style="background-color:aquamarine">
+                        <th>Ảnh SP</th>
+                        <th>Tên SP</th>
+                        <th>Số lượng</th>
+                        <th>Giá SP</th>
+                        <th>Ngày mua hàng</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detail in item)
+                    {
+                    <tr>
+                        <td>
+                            <img src="~/Upload/Product/@detail.HangHoa.HinhAnh"  class="img-responsive" style="width:100px"/>
+
+                        </td>
+
+                        <td>@detail.HangHoa.TenHang</td>
+                        <td>@detail.SoLuong</td>
+                        <td>@detail.Gia</td>
+
+                        @if (!display)
+                        {
+                            <td rowspan="@item.Count()">@detail.HoaDon.CreatedDate</td>
+                            <td rowspan="@item.Count()" style="color:green">@detail.HoaDon.TrangThai</td>
+                            {
+                                display = true;
+                            }
+
+                        }
+                        else
+                        {
+                        }
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+
+
+    else
+    {
+        <div class="alert alert-warning text-center">Không có đơn hàng</div>
+    }
+
+</div>
+
+

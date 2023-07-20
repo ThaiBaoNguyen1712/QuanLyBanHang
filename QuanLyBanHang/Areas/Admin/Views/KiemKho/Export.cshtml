@@ -1,0 +1,30 @@
+﻿@model QuanLyBanHang.Models.HangHoa
+@{
+    ViewBag.Title = "Xuất hàng";
+}
+
+
+
+<div class="container">
+    <h2>Xuất hàng</h2>
+    <hr />
+    <form action="~/Admin/KiemKho/Export" method="post">
+        <div>
+            <input type="hidden" name="ID" value="@Model.ID" class="form-control" />
+        </div>
+        <div>
+            <label>Tên hàng:</label>
+            <input type="text" name="TenHang" value="@Model.TenHang" class="form-control" readonly />
+        </div>
+        <div>
+            <label>Số tồn:</label>
+            <input type="number" name="SoLuong" value="@Model.SoLuong" class="form-control" readonly />
+        </div>
+        <div>
+            <label>Số lượng xuất:</label>
+            <input type="number" name="Xuat" class="form-control" required />
+        </div>
+        <br />
+        <button type="submit" class="btn">Xác nhận</button>
+    </form>
+</div>

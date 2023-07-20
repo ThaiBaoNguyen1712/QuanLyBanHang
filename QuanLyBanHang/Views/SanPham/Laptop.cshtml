@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Laptop chính hãng ";
+}
+
+
+<div class="container">
+    <h4>Laptop chính hãng</h4>
+    <hr />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style="padding: 30px ;">
+                <div class="card" style="width: 18rem; background-color: white;">
+                    <a href="~/SanPham/Detail/@item.ID">
+                        <img src="~/Upload/Product/@item.HinhAnh" style="width: 200px; height: 200px;" class="card-img-top img-responsive" alt="Hình ảnh sản phẩm">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 18px;">@item.TenHang</h5>
+                        <p class="card-text" style="font-size: 16px; color: red;"> @item.GiaBan ₫</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="33a9b752ebd44d50b0622b242f8b1b21" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="QL_BanLeModel.NhomHangHoa" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="QL_BanLeModel.ThuongHieu" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QL_BanLeModel.NhomKhachHang" Width="1.5" PointX="6.75" PointY="1.875" />
+        <EntityTypeShape EntityType="QL_BanLeModel.ChiTietHoaDon" Width="1.5" PointX="1.375" PointY="8.625" />
+        <EntityTypeShape EntityType="QL_BanLeModel.KhachHang" Width="1.5" PointX="10.125" PointY="3" />
+        <EntityTypeShape EntityType="QL_BanLeModel.User" Width="1.5" PointX="8.75" PointY="7.625" />
+        <EntityTypeShape EntityType="QL_BanLeModel.UserGroup" Width="1.5" PointX="8.75" PointY="11" />
+        <AssociationConnector Association="QL_BanLeModel.FK_KhachHang_NhomKhachHang" />
+        <AssociationConnector Association="QL_BanLeModel.FK_KhachHang_User" />
+        <AssociationConnector Association="QL_BanLeModel.FK_User_UserGroup" />
+        <EntityTypeShape EntityType="QL_BanLeModel.HoaDon" Width="1.5" PointX="4" PointY="8.375" />
+        <AssociationConnector Association="QL_BanLeModel.FK_ChiTietHoaDon_HoaDon" />
+        <AssociationConnector Association="QL_BanLeModel.FK_HoaDon_KhachHang" />
+        <EntityTypeShape EntityType="QL_BanLeModel.View" Width="1.5" PointX="4" PointY="6" />
+        <EntityTypeShape EntityType="QL_BanLeModel.HangHoa" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="QL_BanLeModel.FK_ChiTietHoaDon_HangHoa" />
+        <AssociationConnector Association="QL_BanLeModel.FK_HangHoa_NhomHangHoa" />
+        <AssociationConnector Association="QL_BanLeModel.FK_HangHoa_ThuongHieu" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

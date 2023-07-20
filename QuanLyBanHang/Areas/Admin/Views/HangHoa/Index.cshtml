@@ -1,0 +1,57 @@
+﻿@model IEnumerable<QuanLyBanHang.Models.HangHoa>
+
+@{
+    ViewBag.Title = "Danh mục";
+    var HangHoa = ViewBag.model as QuanLyBanHang.Models.HangHoa;
+}
+<div style="background-color:#edf0f0;margin-top:-20px!important;min-height:50em;">
+    <div class="container">
+        <div class="col-md-3">
+            <h3>Danh sách hàng hóa</h3>
+        </div>
+        <div class="col-md-9" style="padding-top:15px">
+            <button type="submit" class="btn-primary btn-add-product" id="btn-add-product" data-toggle="modal" data-target="#myModal"> <i class="bi bi-plus-circle"></i> Thêm hàng hóa
+                </button>
+                @Html.Partial("Create")
+</div>
+
+    </div>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="Product-zone">
+                    <table id="myTable" class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Mã hàng hóa</th>
+                                <th scope="col">Tên hàng hóa</th>
+                                <th scope="col">Giá vốn</th>
+                                <th scope="col">Giá bán</th>
+                                <th scope="col">Tồn kho</th>
+                                <th scope="col">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.TenHang</td>
+                                    <td>@item.GiaVon</td>
+                                    <td>@item.GiaBan</td>
+                                    <td>@item.SoLuong</td>
+                                    <td>
+                                        <a href="~/Admin/HangHoa/Update/@item.ID" class="bi bi-pencil-square"></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/JSTB.js"></script>

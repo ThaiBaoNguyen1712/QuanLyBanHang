@@ -1,0 +1,45 @@
+﻿@model IEnumerable<QuanLyBanHang.Models.HangHoa>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="Product-zone">
+                <table id="myTable" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Mã hàng hóa</th>
+                            <th scope="col">Tên hàng hóa</th>
+                            <th scope="col">Giá bán</th>
+                            <th scope="col">Tồn kho</th>
+                            <th scope="col">Nhập</th>
+                            <th scope="col">Xuất</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.TenHang</td>
+                            <td>@item.GiaBan</td>
+                            <td>@item.SoLuong</td>
+                            <td>
+                                <a href="~/Admin/KiemKho/Import/@item.ID" class="btn-primary text-center" style="padding:8px"><i class="bi bi-plus-lg"></i></a>
+                            </td>
+                            <td>
+                                <a href="~/Admin/KiemKho/Export/@item.ID" class="btn-danger" style="padding:8px"><i class="bi bi-dash-lg"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/JSTB.js"></script>

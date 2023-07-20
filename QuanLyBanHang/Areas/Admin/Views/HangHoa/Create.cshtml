@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<form role="form" method="post" action="~/Admin/HangHoa/Create" enctype="multipart/form-data">
+    <div class="">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog  custom-modal-dialog" style="max-width:900px;width:90%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thêm hàng hóa</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                              
+                                    <div class="form-group">
+                                        <label for="tenHang">Tên hàng:</label>
+                                        <input type="text" class="form-control" id="TenHang" name="TenHang" placeholder="Nhập tên hàng" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NhomHang">Loại hàng</label>
+                                        @Html.DropDownList("NhomHang", ViewData["NhomHang"] as SelectList, "-- Chọn loại hàng --", new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ThuongHieu">Thương hiệu</label>
+                                        @Html.DropDownList("ThuongHieu", ViewData["ThuongHieu"] as SelectList, "-- Chọn Thương hiệu --", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="giaVon">Giá vốn:</label>
+                                        <input type="text" class="form-control" id="GiaVon" name="GiaVon" placeholder="Nhập giá vốn" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="giaBan">Giá bán:</label>
+                                        <input type="text" class="form-control" id="GiaBan" name="GiaBan" placeholder="Nhập giá bán" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SoLuong">Số lượng:</label>
+                                        <input type="text" class="form-control" id="SoLuong" name="SoLuong" placeholder="Nhập số lượng" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ViTri">Vị trí:</label>
+                                        <input type="text" class="form-control" name="ViTri" id="ViTri" placeholder="Nhập vị trí">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ViTri">Ghi chú:</label>
+                                        <textarea class="form-control" name="GhiChu" id="GhiChu" placeholder="Mô tả thêm..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="HinhAnh">Hình ảnh:</label>
+                                        <br>
+                                        <img id="preview" src="~/Upload/Product/none.jpg" style="width:120px;height:120px" />
+                                        <input type="file" class="form-control-file" accept="image/*" id="HinhAnh" name="HinhAnh" onchange="previewImage(event)">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Thêm hàng hóa</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>  
+<script>
+    function previewImage(event) {
+        var fileInput = event.target;
+        var file = fileInput.files[0];
+        var preview = document.getElementById("preview");
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "~/Upload/Product/none.jpg";
+        }
+    }
+</script>

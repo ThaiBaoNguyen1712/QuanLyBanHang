@@ -1,0 +1,111 @@
+﻿@model QuanLyBanHang.Models.KhachHang
+@{
+    ViewBag.Title = "Thông tin tài khoản";
+}
+
+<form action="~/CreateCus/Update" method="post" enctype="multipart/form-data">
+    <div class="container"  style="margin-top:20px">
+        <div class="row">
+            <div class="col-md-4">
+                <img id="preview" src="~/Upload/Client/@Model.HinhAnh" style="width:120px;height:120px" />
+                <input type="file" id="fileInput" onchange="previewImage(event)" name="HinhAnh">
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <input type="hidden" class="form-control" id="ID" name="ID" value="@Model.ID">
+                </div>
+                <div class="form-group">
+                    <label for="tenKhachHang">Tên của bạn:</label>
+                    <input type="text" class="form-control" id="TenKhachHang" name="TenKhachHang" value="@Model.TenKhachHang" required>
+                </div>
+                <div class="form-group">
+                    <label for="dienThoai">Điện thoại:</label>
+                    <input type="text" class="form-control" id="DienThoai" name="DienThoai" value="@Model.DienThoai" required>
+                </div>
+                @{
+                    var NgaySinh = Model.NgaySinh?.ToString("MM/dd/yyyy");
+                }
+
+                <div class="form-group">
+                    <label>Ngày sinh:</label>
+                    <br />
+                    <input type="text" class="form-control" id="NgaySinh" name="NgaySinh" value="@NgaySinh" placeholder="MM/DD/YYYY" required/>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Giới tính:</label>
+                    <br />
+                    Nam:   @Html.RadioButton("GioiTinh", "Nam", Model.GioiTinh == "Nam")
+
+                    Nữ: @Html.RadioButton("GioiTinh", "Nữ", Model.GioiTinh == "Nữ")
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="diaChi">Địa chỉ:</label>
+                    <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="@Model.DiaChi" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tôi là:</label>
+                    @Html.DropDownListFor(model => model.NhomKhachHang.ID, ViewBag.NhomKH as SelectList, "--Nhóm khách hàng--", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="maSoThue">Mã số thuế:</label>
+                    <input type="text" class="form-control" id="MaSoThue" name="MaSoThue" value="@Model.MaSoThue">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="facebook">Facebook:</label>
+                    <input type="text" class="form-control" id="Facebook" name="Facebook" value="@Model.Facebook">
+                </div>
+             
+            </div>
+        </div>
+
+    </div>
+
+
+    <br />
+    <div class="text-center">
+
+        <button type="submit" class="btn btn-primary" onclick="return Update()"><i class="bi bi-file-earmark"></i> Xác nhận</button>
+        <a href="~/SanPham/Index" class="btn btn-primary">Hủy</a>
+    </div>
+
+</form>
+
+<script>
+            function Update() {
+                var result = confirm("Bạn muốn thay đổi ?");
+                if (result) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            function previewImage(event) {
+                var fileInput = event.target;
+                var file = fileInput.files[0];
+                var preview = document.getElementById("preview");
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = "~/Upload/Client/@Model.HinhAnh";
+                }
+            }
+
+</script>

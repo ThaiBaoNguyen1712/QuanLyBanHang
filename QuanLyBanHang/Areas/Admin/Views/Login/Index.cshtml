@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="wrapper">
+        <form action="~/Admin/Login/kiemtradangnhap" method="post" class="login">
+            <p class="title">Đăng nhập</p>
+            <input type="text" value="@ViewBag.username" placeholder="Username" autofocus required name="username" />
+            <i class="fa fa-user"></i>
+            <input type="password" value="@ViewBag.password" placeholder="Password" required name="password" />
+            <i class="fa fa-key"></i>
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger text-center"><p style="color:red">@ViewBag.ErrorMessage</p></div>
+            }
+            <button type="submit">
+              
+                <span class="state">Đăng nhập</span>
+            </button>
+        </form>
+
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</body>
+</html>

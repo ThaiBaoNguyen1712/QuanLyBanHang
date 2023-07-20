@@ -1,0 +1,37 @@
+﻿@model IEnumerable<QuanLyBanHang.Models.HangHoa>
+@{
+    ViewBag.Title = "Combo";
+}
+
+
+<div class="container" style="margin-top:20px">
+    <h4>Combo</h4>
+    <hr />
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="col-md-3" style="padding: 30px ;">
+                    <div class="card" style="width: 18rem; background-color: white;">
+                        <a href="~/SanPham/Detail/@item.ID">
+                            <img src="~/Upload/Product/@item.HinhAnh" style="width: 200px; height: 200px;" class="card-img-top img-responsive" alt="Hình ảnh sản phẩm">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 18px;">@item.TenHang</h5>
+                            <p class="card-text" style="font-size: 16px; color: red;">@item.GiaBan ₫</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger text-center">Chưa có hàng</div>
+        }
+
+    </div>
+</div>
+
+

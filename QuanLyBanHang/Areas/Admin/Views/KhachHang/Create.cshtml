@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<form method="post" action="~/Admin/KhachHang/Create" enctype="multipart/form-data">
+    <div class="">
+
+        <div class="modal fade" id="Add-Client" role="dialog">
+            <div class="modal-dialog  custom-modal-dialog" style="max-width:900px;width:90%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thêm khách hàng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="hinhAnh">Hình ảnh:</label>
+                                            <br />
+                                            <img id="preview" src="~/Upload/Client/none.jpg" style="width:120px;height:120px" />
+                                            <input type="file" class="form-control-file" accept="image/*" id="HinhAnh" name="HinhAnh" onchange="previewImage(event)">
+                                        </div>
+
+
+                                        </div>
+                                    <div class="col-md-4">
+                                         <div class="form-group">
+                                            <label for="tenKhachHang">Tên khách hàng:</label>
+                                            <input type="text" class="form-control" id="TenKhachHang" name="TenKhachHang">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dienThoai">Điện thoại:</label>
+                                            <input type="text" class="form-control" id="DienThoai" name="DienThoai">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ngaySinh">Ngày sinh:</label>
+                                            <input type="date" class="form-control" id="NgaySinh" name="NgaySinh">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Giới tính:</label>
+                                            <br />
+                                            Nam:   @Html.RadioButton("GioiTinh", "Nam")
+
+                                            Nữ: @Html.RadioButton("GioiTinh", "Nữ")
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="DiaChi">Địa chỉ:</label>
+                                            <input type="text" class="form-control" id="DiaChi" name="DiaChi">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="NhomKH"> Loại khách hàng:</label>
+                                            @Html.DropDownList("NhomKH", ViewData["NhomKH"] as SelectList, "-- Loại khách hàng --", new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="maSoThue">Mã số thuế:</label>
+                                            <input type="text" class="form-control" id="MaSoThue" name="MaSoThue">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" id="Email" name="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="facebook">Facebook:</label>
+                                            <input type="text" class="form-control" id="Facebook" name="Facebook">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ghiChu">Ghi chú:</label>
+                                            <textarea class="form-control" id="GhiChu" name="GhiChu"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Thêm khách hàng</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function previewImage(event) {
+        var fileInput = event.target;
+        var file = fileInput.files[0];
+        var preview = document.getElementById("preview");
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "~/Upload/Client/none.jpg";
+        }
+    }
+</script>
